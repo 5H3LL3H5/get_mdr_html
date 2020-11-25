@@ -1,0 +1,10 @@
+name: 'Upgrade ubuntu'
+description: 'Upgrades ubuntu via apt' 
+author: '5H3LL3H5'
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        sudo apt-get update
+        sudo apt-get -y dist-upgrade
+      shell: bash 
