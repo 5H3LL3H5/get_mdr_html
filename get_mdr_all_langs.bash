@@ -52,10 +52,10 @@ center_text()
 {
   local text="${1}"                         # text to center
   local -i padding_width=${2:-$(tput cols)} # if left query the number of cols
-  # via terminfo database
+                                            # via terminfo database
   local -r left_glyph="${3:-=}"             # glyph to compose the left border
   local -r right_glyph="${4:-$left_glyph}"  # optional glyph to compose the
-  # right border
+                                            # right border
   local -i num_of_spaces="${5:-2}"          # spacing around the text
 
   local -i text_width=0                     # text width
@@ -163,8 +163,10 @@ main()
   done        # end of iterating through uris
 }
 
+
 #                                                                SIGNAL HANDLER
 ###############################################################################
+
 
 ###############################################################################
 # cleanup on exit, signal handler
@@ -174,8 +176,10 @@ cleanup()
   :
 }
 
+
 #                                                                          BODY 
 ###############################################################################
+
 
 ###############################################################################
 # code in here only gets executed if script is run directly on the cmdline
@@ -183,6 +187,7 @@ cleanup()
 if [[ "${BASH_SOURCE[0]}" == "$0" ]];
 then
 
+  # install signal handler
   trap cleanup EXIT
 
   # pass whole parameter list to main
