@@ -43,36 +43,34 @@ center_text()
                                             # right border
   local -i num_of_spaces="${5:-2}"          # spacing around the text
 
-  local -i text_width=${#text}
+  local -i text_width=0                     # text width
+  local -i border_width=0                   # border width value
+  local spacing=""                          # string with spaces around text
+  local left_border=""                      # string filled up with left glyphs
+  local right_border=""                     # string filles up with right glyphs
 
   # if no text is obmitted use full border style
-  local spacing
-  if [[ -z "$text" ]];
-  then
+  if [[ -z "$text" ]]; then
     text=""
-    spacing=""
     num_of_spaces=0
-    text_width=0
   else
-    # space between the text and borders 
+    text_width=${#text}
+    # spaces between the text and borders 
     printf -v spacing "%0.s " $(seq 1 "$num_of_spaces")
   fi
 
-  local border_width=$(( (padding_width - (num_of_spaces * 2) - text_width) / 2 ))
-  local left_border
-  local right_border
-  if (( border_width < 0 ));
-  then
-    # handle invalid computation of border width but write warning to stdout
-    err "Warning: Invalid border width, set to 0."
-    border_width=0
+  border_width=$(( (padding_width - (num_of_spaces * 2) - text_width) / 2 ))
+  if (( border_width < 0 )); then
+    err "Warning: Invalid border width."
+    exit 1
   fi
+
+  # fill up borders with glyphs
   printf -v left_border "%0.s$left_glyph" $(seq 1 "$border_width")
   printf -v right_border "%0.s$right_glyph" $(seq 1 "$border_width")
 
   # a side of the border may be longer (e.g. the right border)
-  if (( ( padding_width - (num_of_spaces * 2) - text_width ) % 2 != 0 ));
-  then
+  if (( ( padding_width - (num_of_spaces * 2) - text_width ) % 2 != 0 )); then
     # the right border has one more character than the left border
     # the text is aligned leftmost
     right_border="${right_border}${right_glyph}"
@@ -92,8 +90,7 @@ declare -r logfile="wget-logfile"
 declare -r -a langs=( "BG" "ES" "CS" "DA" "DE" "ET" "EL" "EN" "FR" "GA" "HR" "IT" "LV" "LT" "HU" "MT" "NL" "PL" "PT" "RO" "SK" "SL" "FI" "SV" )
 declare -r -a uri=( "https://eur-lex.europa.eu/legal-content/" "/TXT/HTML/?uri=CELEX:32017R0745&from=IT#d1e32-108-1" )
 
-for lang in ${langs[@]};
-do
+for lang in ${langs[@]}; do
 
   declare url="${uri[0]}$lang${uri[1]}"
   declare -i strlen_url=${#url}
