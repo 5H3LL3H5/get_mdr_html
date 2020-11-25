@@ -7,8 +7,13 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-      - name: Setting up BATS
+      - name: Setting up Bats 
         uses: ./.github/actions/setup-bats-action
-      - name: Running tests
+      - name: Setting up shellcheck 
+        uses: ./.github/actions/setup-shellcheck-action
+      - name: Running shellcheck 
+        run: ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources *.bash
+        shell: bash
+      - name: Running bats tests
         run: ~/bats-core/bin/bats --recursive --formatter tap --timing test 
         shell: bash
