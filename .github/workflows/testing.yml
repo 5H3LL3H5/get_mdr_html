@@ -16,9 +16,8 @@ jobs:
       - name: Setting up shellcheck 
         uses: ./.github/actions/setup-shellcheck-action
       - name: Running shellcheck 
-        run: |
-          ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources *.bash
-          ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources test/*.bats
+        run: ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources *.bash
+             ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources test/*.bats
         shell: bash
       - name: Running bats tests
         run: /usr/local/bin/bats --recursive --formatter tap --timing test 
