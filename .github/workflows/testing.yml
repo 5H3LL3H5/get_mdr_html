@@ -1,5 +1,4 @@
-name: 'CI'
-author: '5H3LL3H5'
+name: 'Testing bash scripts.'
 on: [push, pull_request]
 jobs:
   build:
