@@ -8,5 +8,5 @@ runs:
       run: cd && wget "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz"
       shell: bash
     - id: extract-shellcheck
-      run: cd && tar xJf ~/shellcheck-stable.linux.x86_64.tar.xz
+      run: cd && tar xJfv ~/shellcheck-stable.linux.x86_64.tar.xz
       shell: bash
