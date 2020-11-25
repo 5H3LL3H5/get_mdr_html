@@ -1,0 +1,12 @@
+name: 'Setup bats-mock'
+description: 'Setup bats-mock installation'
+author: '5H3LL3H5'
+runs:
+  using: 'composite'
+  steps:
+    - id: clone-bats-mock
+      run: git clone https://github.com/grayhemp/bats-mock.git ~/bats-mock
+      shell: bash
+    - id: build-bats-mock
+      run: cd ~/bats-mock && ./build install
+      shell: bash

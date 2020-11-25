@@ -9,8 +9,10 @@ jobs:
         uses: actions/checkout@v2
         #- name: System update 
         #uses: ./.github/actions/upgrade-ubuntu-action
-      - name: Setting up Bats 
+      - name: Setting up bats 
         uses: ./.github/actions/setup-bats-action
+      - name: Setting up bats-mock
+        uses: ./.github/actions/setup-bats-mock-action
       - name: Setting up shellcheck 
         uses: ./.github/actions/setup-shellcheck-action
       - name: Running shellcheck 
