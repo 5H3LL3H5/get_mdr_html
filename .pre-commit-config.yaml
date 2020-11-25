@@ -1,8 +1,11 @@
 # .pre-commmit-config.yaml
-repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.3.0
-    hooks:
-    -   id: check-yaml
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
+- repo: git@github.com:pecigonzalo/pre-commit-shfmt.git
+  sha: master
+  hooks:
+    - id: shell-fmt
+      args:
+        - --indent=4
+- repo: https://github.com/shellcheck-py/shellcheck-py
+  rev: v0.7.1.1
+  hooks:
+    - id: shellcheck
