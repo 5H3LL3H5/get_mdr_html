@@ -12,5 +12,5 @@ jobs:
         with: 
           bats-version: '1.2.1'
       - name: Running tests
-        run: bats --recursive --tap --timing .
+        run: bats --recursive --tap --timing test 
         shell: bash
