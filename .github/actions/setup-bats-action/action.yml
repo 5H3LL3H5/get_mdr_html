@@ -13,5 +13,5 @@ runs:
       shell: bash
     - run: cd bats-core && git checkout v${{ inputs.bats-version }}
       shell: bash
-    - run: cd bats-core && ./install.sh /usr
+    - run: cd bats-core && sudo ./install.sh /usr
       shell: bash
