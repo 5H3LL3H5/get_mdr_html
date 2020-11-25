@@ -1,7 +1,19 @@
 #!/usr/bin/env bats
 
 setup() {
+  echo "# setup testsuite" >&3
+  echo -e "#\tSourcing script get_mdr_all_langs.bash" >&3
 	. "get_mdr_all_langs.bash"
+  echo -e "#\tPrinting builtin variables" >&3
+  echo -e "#\tBATS_TEST_FILENAM=$BATS_TEST_FILENAME" >&3
+  echo -e "#\tBATS_TEST_DIRNAME=$BATS_TEST_DIRNAME" >&3
+  echo -e "#\tBATS_TEST_NAMES=$BATS_TEST_NAMES" >&3
+  echo -e "#\tBATS_TEST_NAME=$BATS_TEST_NAME" >&3
+  echo -e "#\tBATS_TEST_DESCRIPTION=$BATS_TEST_DESCRIPTION" >&3
+  echo -e "#\tBATS_TEST_NUMBER=$BATS_TEST_NUMBER" >&3
+  echo -e "#\tBATS_SUITE_TEST_NUMBER=$BATS_SUITE_TEST_NUMBER" >&3
+  echo -e "#\tBATS_TMPDIR=$BATS_TMPDIR" >&3
+  echo -e "#\tBATS_FILE_EXTENSION=$BATS_FILE_EXTENSION" >&3
 }
 
 teardown() {
