@@ -8,7 +8,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Setting up BATS
-        uses: actions/setup-bats-action 
+        uses: actions/setup-bats-action@v1 
         with: 
           bats-version: '1.2.1'
       - name: Running tests
