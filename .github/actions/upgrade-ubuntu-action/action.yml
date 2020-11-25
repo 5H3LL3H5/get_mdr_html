@@ -5,6 +5,8 @@ runs:
   using: 'composite'
   steps:
     - run: |
+        [[ -f /etc/issue ]] && cat /etc/issue
         sudo apt-get update
         sudo apt-get -y dist-upgrade
+        sudo apt-get autoremove
       shell: bash 
