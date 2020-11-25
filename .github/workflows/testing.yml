@@ -10,5 +10,5 @@ jobs:
       - name: Setting up BATS
         uses: ./.github/actions/setup-bats-action
       - name: Running tests
-        run: ~/bats-core/bin/base --recursive --formatter tap --timing test 
+        run: ~/bats-core/bin/bats --recursive --formatter tap --timing test 
         shell: bash
