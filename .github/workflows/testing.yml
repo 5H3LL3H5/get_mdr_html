@@ -15,9 +15,10 @@ jobs:
         uses: ./.github/actions/setup-bats-mock-action
       - name: Setting up shellcheck 
         uses: ./.github/actions/setup-shellcheck-action
-      - name: Running shellcheck 
-        run: ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources *.bash
-             ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources test/*.bats
+      - name: Running shellcheck on source scripts
+        run: ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources get_mdr_all_langs.bash
+      - name: Running shellcheck on test scripts
+        run: ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources test/tests.bats
         shell: bash
       - name: Running bats tests
         run: /usr/local/bin/bats --recursive --formatter tap --timing test 
