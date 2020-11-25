@@ -91,6 +91,7 @@ center_text()
   printf "${left_border}${spacing}${text}${spacing}${right_border}\n"
 }
 
+
 ###############################################################################
 # Main control function;
 # Arguments:
