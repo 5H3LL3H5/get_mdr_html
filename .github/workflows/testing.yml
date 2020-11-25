@@ -5,10 +5,10 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - name: System update 
-        uses: ./.github/actions/upgrade-ubuntu-action
       - name: Check out code
         uses: actions/checkout@v2
+      - name: System update 
+        uses: ./.github/actions/upgrade-ubuntu-action
       - name: Setting up Bats 
         uses: ./.github/actions/setup-bats-action
       - name: Setting up shellcheck 
