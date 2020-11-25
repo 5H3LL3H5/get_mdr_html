@@ -11,9 +11,7 @@ runs:
   steps:
     - run: git clone https://github.com/bats-core/bats-core.git
       shell: bash
-    - run: cd bats-core
+    - run: cd bats-core && git checkout v${{ inputs.bats-version }}
       shell: bash
-    - run: git checkout v${{ inputs.bats-version }}
-      shell: bash
-    - run: ./install.sh /usr
+    - run: cd bats-core && ./install.sh /usr
       shell: bash
