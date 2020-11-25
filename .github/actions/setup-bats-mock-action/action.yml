@@ -8,5 +8,5 @@ runs:
       run: git clone https://github.com/grayhemp/bats-mock.git ~/bats-mock
       shell: bash
     - id: build-bats-mock
-      run: cd ~/bats-mock && ./build install
+      run: cd ~/bats-mock && sudo ./build install
       shell: bash
