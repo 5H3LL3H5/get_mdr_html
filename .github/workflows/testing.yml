@@ -19,5 +19,5 @@ jobs:
         run: ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources *.bash
         shell: bash
       - name: Running bats tests
-        run: ~/bats-core/bin/bats --recursive --formatter tap --timing test 
+        run: /usr/local/bin/bin/bats --recursive --formatter tap --timing test 
         shell: bash
