@@ -7,13 +7,12 @@ runs:
     - run: |
         sudo apt-get update
         sudo apt-get install wget
-        sudo apt-get dist-upgrade
+        # sudo apt-get -y dist-upgrade
         echo "Wget installed ... "
       shell: bash 
     - run: | 
         echo "Starting shellcheck download ..."
-        wget --quiet \ 
-          "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz"
+        wget "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz"
+        echo "Download complete, extracting ... "
         tar -xJv ~/shellcheck-stable.linux.x86_64.tar.xz --directory ~/
-        echo "Download complete ... "
       shell: bash
