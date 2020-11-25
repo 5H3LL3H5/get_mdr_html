@@ -12,7 +12,8 @@ runs:
       shell: bash 
     - run: | 
         echo "Starting shellcheck download ..."
-        wget "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz"
+        wget --output-document=~/sc.tar.xz "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz"
+        ls ~/
         echo "Download complete, extracting ... "
-        tar xJf ~/shellcheck-stable.linux.x86_64.tar.xz --directory ~/
+        tar xJf ~/sc.tar.xz --directory ~/
       shell: bash
