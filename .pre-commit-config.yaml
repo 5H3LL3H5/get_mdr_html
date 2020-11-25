@@ -1,11 +1,51 @@
+---
 # .pre-commmit-config.yaml
-- repo: git@github.com:pecigonzalo/pre-commit-shfmt.git
-  sha: master
-  hooks:
-    - id: shell-fmt
-      args:
-        - --indent=4
-- repo: https://github.com/shellcheck-py/shellcheck-py
-  rev: v0.7.1.1
-  hooks:
-    - id: shellcheck
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+    - repo: git@github.com:pre-commit/pre-commit-hooks
+      rev: v3.3.0
+      hooks:
+          - id: trailing-whitespace
+          - id: end-of-file-fixer
+          - id: check-yaml
+          - id: check-added-large-files
+          - id: check-merge-conflict
+          - id: check-symlinks
+          - id: detect-private-key
+    - repo: git@github.com:jumanjihouse/pre-commit-hooks
+      rev: 2.1.4
+      hooks:
+          - id: git-check
+          - id: git-dirty
+          - id: markdownlint
+          - id: shellcheck
+          - id: shfmt
+    - repo: git@github.com:detailyang/pre-commit-shell
+      rev: 1.0.5
+      hooks:
+          - id: shell-lint
+            args: [--format=json]
+    - repo: git@github.com:adrienverge/yamllint
+      rev: v1.25.0
+      hooks:
+          - id: yamllint
+            args: ['-d {extends: relaxed, rules: {line-length: disable}}', --strict]
+    - repo: git@github.com:jumanjihouse/pre-commit-hook-yamlfmt
+      rev: 0.1.0
+      hooks:
+          - id: yamlfmt
+            args: [--width, '150']
+    - repo: git@github.com:codespell-project/codespell
+      rev: v2.0.0
+      hooks:
+          - id: codespell
+    - repo: git@github.com:jorisroovers/gitlint
+      rev: v0.14.0
+      hooks:
+          - id: gitlint
+    - repo: git@github.com:milin/gitown
+      rev: v0.1.7
+      hooks:
+          - id: gitown
+            args: [--ownership_threshold=25, --codeowners_filename=CODEOWNERS]   # Optional

@@ -1,6 +1,7 @@
 #!/usr/bin/env bats
 # shellcheck disable=SC1089,SC1083,SC2154
 
+
 setup() {
   echo "# setup testsuite" >&3
   echo -e "#\tSourcing script get_mdr_all_langs.bash" >&3
@@ -17,16 +18,19 @@ setup() {
   echo -e "#\tBATS_FILE_EXTENSION=$BATS_FILE_EXTENSION" >&3
 }
 
+
 teardown() {
   :
 }
 
+
 function invoking_exists_command_without_arguments { #@test
   echo "# run exists_command" >&3
-	run exists_command 
+	run exists_command
   echo -e "#\ttesting return code equals 1" >&3
 	[[ "$status" -eq 1 ]]
 }
+
 
 function invoking_exists_command_with_non_existing_command { #@test
   echo "# run exists_command wgetfff" >&3
@@ -36,6 +40,7 @@ function invoking_exists_command_with_non_existing_command { #@test
   echo -e "#\ttesting output is empty" >&3
   [[ -z "$output" ]]
 }
+
 
 function invoking_exists_command_with_existing_command { #@test
   echo "# run exists_command wget" >&3
@@ -48,9 +53,10 @@ function invoking_exists_command_with_existing_command { #@test
   [[ -x "$output" ]]
 }
 
+
 function invoking_cleanup { #@test
   echo "# run cleanup" >&3
-	run cleanup 
+	run cleanup
   echo -e "#\ttesting return code equals 0" >&3
 	[[ "$status" -eq 0 ]]
 }
