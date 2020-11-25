@@ -4,5 +4,9 @@ author: '5H3LL3H5'
 runs:
   using: 'composite'
   steps:
-    - run: git clone https://github.com/bats-core/bats-core.git ~/bats-core
+    - id: clone-bats-core
+      run: git clone https://github.com/bats-core/bats-core.git ~/bats-core
+      shell: bash
+    - id: install-bats-core
+      run: cd ~/bats-core && sudo ./install.sh /usr/local
       shell: bash
