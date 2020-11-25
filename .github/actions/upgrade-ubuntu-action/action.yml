@@ -5,7 +5,7 @@ runs:
   using: 'composite'
   steps:
     - id: display-os-version
-      run: [[ -f /etc/issue ]] && cat /etc/issue
+      run: [ -f /etc/issue ] && cat /etc/issue
       shell: bash 
     - id: apt-update
       run: sudo apt-get update
