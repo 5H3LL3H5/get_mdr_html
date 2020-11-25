@@ -4,9 +4,15 @@ author: '5H3LL3H5'
 runs:
   using: 'composite'
   steps:
-    - run: |
-        [[ -f /etc/issue ]] && cat /etc/issue
-        sudo apt-get update
-        sudo apt-get -y dist-upgrade
-        sudo apt-get autoremove
+    - id: display-os-version
+      run: [[ -f /etc/issue ]] && cat /etc/issue
+      shell: bash 
+    - id: apt-update
+      run: sudo apt-get update
+      shell: bash 
+    - id: apt-dist-upgrade
+      run: sudo apt-get -y dist-upgrade
+      shell: bash
+    - id: apt-autoremove
+      run: sudo apt-get autoremove
       shell: bash 

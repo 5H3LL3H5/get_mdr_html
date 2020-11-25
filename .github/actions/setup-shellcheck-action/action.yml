@@ -4,7 +4,9 @@ author: '5H3LL3H5'
 runs:
   using: 'composite'
   steps:
-    - run: | 
-        wget "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" --output-document=~/sc.tar.xz
-        tar xJf ~/sc.tar.xz --directory ~/
+    - id: download-shellcheck
+      run: wget "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" -O ~/sc.tar.xz
+      shell: bash
+    - id: extract-shellcheck
+      run: tar xJf ~/sc.tar.xz --directory ~/
       shell: bash
