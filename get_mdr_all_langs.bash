@@ -18,6 +18,20 @@ err() {
   echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
 }
 
+###############################################################################
+# Checks if command exists.
+# Arguments:
+#   1) command to check.
+# Returns:
+#   0 ... command exists on system
+#   1 ... command unavailable
+# Outputs:
+#   If command exists whole path is written to stdout.
+###############################################################################
+exists_command() {
+  command -v "$1"
+}
+
 
 ###############################################################################
 # Center the text with a surrounding border.
@@ -85,8 +99,14 @@ center_text()
 ###############################################################################
 main()
 {
+  # check if required commands are installed
+  if ! exists_command wget &> /dev/null; then
+    err "Command wget not available."
+    return 1
+  fi
+
   # readonly variables 
-  local -r wget="/usr/bin/wget"
+  local -r wget=$(exists_command wget)
   local -r agent="Mozilla"
   local -r cmds="robots=off"
   local -r logfile="wget-logfile"
@@ -166,7 +186,7 @@ then
   # pass whole parameter list to main
   if ! main "$@";
   then
-    err "Execution of script $0 fails."
+    err "Execution of script $0 failed."
     exit 1
   fi
 fi
