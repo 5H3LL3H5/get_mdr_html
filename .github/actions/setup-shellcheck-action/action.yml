@@ -5,8 +5,8 @@ runs:
   using: 'composite'
   steps:
     - id: download-shellcheck
-      run: wget "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" -O ~/sc.tar.xz
+      run: pwd && wget "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" -O ~/sc.tar.xz
       shell: bash
     - id: extract-shellcheck
-      run: tar xJf ~/sc.tar.xz --directory ~/
+      run: pwd && tar xJf ~/sc.tar.xz --directory ~/
       shell: bash
