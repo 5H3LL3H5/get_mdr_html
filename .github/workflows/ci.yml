@@ -1,16 +1,14 @@
-name: "CI"
+name: 'CI'
+author: '5H3LL3H5'
 on: [push, pull_request]
 jobs:
   build:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - name: Setting up BATS
-        run: git clone https://github.com/bats-core/bats-core.git; cd bats-core; sudo ./install.sh /usr
-
-      
       - name: Check out code
         uses: actions/checkout@v2
-              
+      - name: Setting up BATS
+        uses: actions/setup-bats-action 
       - name: Running tests
         run: bats -r .
