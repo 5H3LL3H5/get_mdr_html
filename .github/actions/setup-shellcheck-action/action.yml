@@ -4,8 +4,7 @@ author: '5H3LL3H5'
 runs:
   using: 'composite'
   steps:
-    - run: \
-        apt-get update && apt-get install wget
+    - run: apt-get update && apt-get install wget
       shell: bash 
     - run: \ 
         wget -qO- \ 
