@@ -7,8 +7,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        #- name: System update 
-        #uses: ./.github/actions/upgrade-ubuntu-action
+      - name: System update 
+        uses: ./.github/actions/upgrade-ubuntu-action
       - name: Setting up bats 
         uses: ./.github/actions/setup-bats-action
       - name: Setting up bats-mock
