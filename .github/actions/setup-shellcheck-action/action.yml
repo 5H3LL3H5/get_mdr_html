@@ -5,11 +5,15 @@ runs:
   using: 'composite'
   steps:
     - run: |
-        sudo apt-get update && sudo apt-get install wget; exit 0
+        sudo apt-get update
+        sudo apt-get install wget
+        sudo apt-get dist-upgrade
+        echo "Wget installed ... "
       shell: bash 
     - run: | 
         echo "Starting shellcheck download ..."
-        wget -qO- \ 
-        "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" \ 
-        | tar -xJv --directory ~/
+        wget --quiet \ 
+          "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz"
+        tar -xJv ~/shellcheck-stable.linux.x86_64.tar.xz --directory ~/
+        echo "Download complete ... "
       shell: bash
