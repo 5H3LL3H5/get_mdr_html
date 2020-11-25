@@ -4,22 +4,22 @@
 # Copyright (C) 2020 (christianstenzel@linux.com)
 # Permission to copy and modify is granted under the MIT license
 # Last revised 2020-11-25
-################################################################################
+###############################################################################
 
 
-################################################################################
-# Print error message to standard out.
+###############################################################################
+# Print error message to stderr.
 # Arguments:
 #   1) Optional error message.
 # Outputs:
 #   Writes timestamped error message to stderr.
-################################################################################
+###############################################################################
 err() {
   echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
 }
 
 
-################################################################################
+###############################################################################
 # Center the text with a surrounding border.
 # Arguments:
 #   1) text to center,
@@ -32,15 +32,15 @@ err() {
 #      last glyph of left border and first glyph of right border respectivally
 # Outputs:
 #   Writes centered message to stdout.
-################################################################################
+###############################################################################
 center_text()
 {
   local text="${1}"                         # text to center
   local -i padding_width=${2:-$(tput cols)} # if left query the number of cols
-                                            # via terminfo database
+  # via terminfo database
   local -r left_glyph="${3:-=}"             # glyph to compose the left border
   local -r right_glyph="${4:-$left_glyph}"  # optional glyph to compose the
-                                            # right border
+  # right border
   local -i num_of_spaces="${5:-2}"          # spacing around the text
 
   local -i text_width=0                     # text width
@@ -60,10 +60,6 @@ center_text()
   fi
 
   border_width=$(( (padding_width - (num_of_spaces * 2) - text_width) / 2 ))
-  if (( border_width < 0 )); then
-    err "Warning: Invalid border width."
-    exit 1
-  fi
 
   # fill up borders with glyphs
   printf -v left_border "%0.s$left_glyph" $(seq 1 "$border_width")
@@ -80,42 +76,97 @@ center_text()
   printf "${left_border}${spacing}${text}${spacing}${right_border}\n"
 }
 
-# readonly variables 
-declare -r wget="/usr/bin/wget"
-declare -r agent="Mozilla"
-declare -r cmds="robots=off"
-declare -r logfile="wget-logfile"
+###############################################################################
+# Main control function;
+# Arguments:
+#   None
+# Outputs:
+#   Writes centered message to stdout.
+###############################################################################
+main()
+{
+  # readonly variables 
+  local -r wget="/usr/bin/wget"
+  local -r agent="Mozilla"
+  local -r cmds="robots=off"
+  local -r logfile="wget-logfile"
 
-# readonly string arrays
-declare -r -a langs=( "BG" "ES" "CS" "DA" "DE" "ET" "EL" "EN" "FR" "GA" "HR" "IT" "LV" "LT" "HU" "MT" "NL" "PL" "PT" "RO" "SK" "SL" "FI" "SV" )
-declare -r -a uri=( "https://eur-lex.europa.eu/legal-content/" "/TXT/HTML/?uri=CELEX:32017R0745&from=IT#d1e32-108-1" )
+  # readonly string arrays
 
-for lang in ${langs[@]}; do
+  # available languages
+  # ( "BG" "ES" "CS" "DA" "DE" "ET" "EL" "EN" "FR" "GA" "HR" "IT" "LV" "LT" "HU" "MT" "NL" "PL" "PT" "RO" "SK" "SL" "FI" "SV" )
+  local -r -a langs=( "DE" "EN" )
+  local -r -a formats=( "HTML" "PDF" )
+  local -r -a uri=( \
+    "https://eur-lex.europa.eu/legal-content/"\
+    "/TXT/"\
+    "/?uri=CELEX:32017R0745"\
+    "/?uri=OJ:L:2017:117:FULL" )
 
-  declare url="${uri[0]}$lang${uri[1]}"
-  declare -i strlen_url=${#url}
-  {
-    echo
-    center_text ""                                        $((strlen_url + 20))
-    center_text "Getting content for language $lang from" $((strlen_url + 20)) ">" "<"
-    center_text "$url"                                    $((strlen_url + 20)) ">" "<"
-    center_text ""                                        $((strlen_url + 20))
-    echo
-  } >> "$logfile"
+  # inner loop variables
+  local url=""
+  local -i strlen_url=0
+
+  # get content
+  for (( idx_uri=2; idx_uri<${#uri[@]}; ++idx_uri  )); do
+    for lang in ${langs[@]}; do
+      for format in ${formats[@]}; do
+        url="${uri[0]}$lang${uri[1]}${format[0]}${uri[idx_uri]}"
+        strlen_url=${#url}
+        {
+          echo
+          center_text ""                                        $((strlen_url + 20))
+          center_text "Getting content for language $lang from" $((strlen_url + 20)) ">" "<"
+          center_text "$url"                                    $((strlen_url + 20)) ">" "<"
+          center_text ""                                        $((strlen_url + 20))
+          echo
+        } >> "$logfile"
 
 
-  "$wget"\
-    --debug\
-    --mirror\
-    --convert-links\
-    --adjust-extension\
-    --span-hosts\
-    --backup-converted\
-    --page-requisites\
-    --no-parent\
-    --execute "$cmds"\
-    --user-agent="$agent"\
-    --append-output="$logfile"\
-    "${url}"
+        "$wget"\
+          --debug\
+          --mirror\
+          --convert-links\
+          --adjust-extension\
+          --span-hosts\
+          --page-requisites\
+          --no-parent\
+          --execute "$cmds"\
+          --user-agent="$agent"\
+          --append-output="$logfile"\
+          "${url}"
 
-done
+      done    # end of iterating through formats
+    done      # end of iterating through languages
+  done        # end of iterating through uris
+}
+
+#                                                                SIGNAL HANDLER
+###############################################################################
+
+###############################################################################
+# cleanup on exit, signal handler
+###############################################################################
+cleanup()
+{
+  :
+}
+
+#                                                                          BODY 
+###############################################################################
+
+###############################################################################
+# code in here only gets executed if script is run directly on the cmdline
+###############################################################################
+if [[ "${BASH_SOURCE[0]}" == "$0" ]];
+then
+
+  trap cleanup EXIT
+
+  # pass whole parameter list to main
+  if ! main "$@";
+  then
+    err "Execution of script $0 fails."
+    exit 1
+  fi
+fi
