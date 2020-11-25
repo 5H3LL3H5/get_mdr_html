@@ -9,15 +9,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: git clone https://github.com/bats-core/bats-core.git
-      shell: bash
+    - name: Checkout bats
+      uses: actions/checkout@v${{ inputs.bats-version }}
+      with:
+        repository: https://github.com/bats-core/bats-core
     - run: cd bats-core
-      shell: bash
-    - run: git fetch --tags 
-      shell: bash
-    - run: git fetch --tags 
-      shell: bash
-    - run: git checkout tags/v${{ inputs.bats-version }}
       shell: bash
     - run: ./install.sh /usr
       shell: bash
