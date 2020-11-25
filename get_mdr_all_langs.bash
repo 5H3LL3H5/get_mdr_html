@@ -88,7 +88,8 @@ center_text()
   fi
 
   # displays the text in the center of the screen, surrounded by borders.
-  printf "${left_border}${spacing}${text}${spacing}${right_border}\n"
+  printf "%s%s%s%s%s\n" \
+    "$left_border" "$spacing" "$text" "$spacing" "$right_border"
 }
 
 
@@ -131,8 +132,8 @@ main()
 
   # get content
   for (( idx_uri=2; idx_uri<${#uri[@]}; ++idx_uri  )); do
-    for lang in ${langs[@]}; do
-      for format in ${formats[@]}; do
+    for lang in "${langs[@]}"; do
+      for format in "${formats[@]}"; do
         url="${uri[0]}$lang${uri[1]}${format[0]}${uri[idx_uri]}"
         strlen_url=${#url}
         {
