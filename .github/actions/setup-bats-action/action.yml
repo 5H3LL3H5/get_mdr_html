@@ -3,7 +3,6 @@ description: 'Setup bats installation'
 author: '5H3LL3H5'
 runs:
   using: 'composite'
-  description: 'clones bats into ~/bats-core'
   steps:
     - run: git clone https://github.com/bats-core/bats-core.git ~/bats-core
       shell: bash
