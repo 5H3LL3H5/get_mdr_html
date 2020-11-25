@@ -6,7 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setting up BATS
-        run: sudo npm install -g bats
+        run: git clone https://github.com/bats-core/bats-core.git; cd bats-core; sudo ./install.sh /usr
+
       
       - name: Check out code
         uses: actions/checkout@v2
