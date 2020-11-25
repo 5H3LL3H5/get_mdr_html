@@ -1,17 +1,8 @@
 name: 'Setup bats'
 description: 'Setup bats installation'
 author: '5H3LL3H5'
-inputs:
-  bats-version:
-    description: "The BATS version to setup."
-    required: true
-    default: '1.2.1'
 runs:
   using: 'composite'
   steps:
     - run: git clone https://github.com/bats-core/bats-core.git
-      shell: bash
-    - run: cd bats-core && git checkout tags\/v${{ inputs.bats-version }}
-      shell: bash
-    - run: cd bats-core && sudo ./install.sh /usr
       shell: bash
