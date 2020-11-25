@@ -8,4 +8,4 @@ runs:
         wget -qO- \ 
         "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" \ 
         | tar -xJv --directory ~/
-        shell: bash
+      shell: bash
