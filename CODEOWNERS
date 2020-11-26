@@ -15,3 +15,5 @@ LICENSE 5H3LL3H5
 .gitignore 5H3LL3H5
 .github/actions/setup-shellcheck-action/action.yml 5H3LL3H5
 CODEOWNERS 5H3LL3H5
+.github/actions/setup-bats-action/action.yaml 5H3LL3H5
+.github/actions/setup-bats-mock-action/action.yaml 5H3LL3H5
