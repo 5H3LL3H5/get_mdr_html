@@ -49,3 +49,11 @@ repos:
       hooks:
           - id: gitown
             args: [--ownership_threshold=25, --codeowners_filename=CODEOWNERS]   # Optional
+    - repo: local
+      hooks:
+          - id: spellcheck-on-tests-via-pre-commit
+            name: run spellcheck on bats files in testfolder during pre-commit
+            language: system
+            entry: bash -c 'shellcheck --shell=bash --severity=style --norc --external-sources test/*.bats'
+            pass_filenames: false
+            requires: [shellcheck]

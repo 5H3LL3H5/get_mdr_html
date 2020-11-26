@@ -17,9 +17,9 @@ jobs:
             - name: Setting up shellcheck
               uses: ./.github/actions/setup-shellcheck-action
             - name: Running shellcheck on source scripts
-              run: ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources get_mdr_all_langs.bash
+              run: shellcheck --shell=bash --severity=style --norc --external-sources get_mdr_all_langs.bash
             - name: Running shellcheck on test scripts
-              run: ~/shellcheck-stable/shellcheck --shell=bash --severity=style --norc --external-sources test/tests.bats
+              run: shellcheck --shell=bash --severity=style --norc --external-sources test/tests.bats
               shell: bash
             - name: Running bats tests
               run: /usr/local/bin/bats --recursive --formatter tap --timing test

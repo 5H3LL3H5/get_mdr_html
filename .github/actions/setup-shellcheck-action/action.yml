@@ -13,3 +13,6 @@ runs:
         - id: extract-shellcheck
           run: cd && tar xJfv ~/shellcheck-stable.linux.x86_64.tar.xz
           shell: bash
+        - id: copy-shellcheck
+          run: sudo cp ~/shellcheck-stable/shellcheck /usr/bin
+          shell: bash

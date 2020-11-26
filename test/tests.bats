@@ -7,7 +7,7 @@ setup() {
   echo -e "#\tSourcing script get_mdr_all_langs.bash" >&3
 	. "get_mdr_all_langs.bash"
   echo -e "#\tPrinting builtin variables" >&3
-  echo -e "#\tBATS_TEST_FILENAM=$BATS_TEST_FILENAME" >&3
+  echo -e #\tBATS_TEST_FILENAM=$BATS_TEST_FILENAME >&3
   echo -e "#\tBATS_TEST_DIRNAME=$BATS_TEST_DIRNAME" >&3
   echo -e "#\tBATS_TEST_NAMES=$BATS_TEST_NAMES" >&3
   echo -e "#\tBATS_TEST_NAME=$BATS_TEST_NAME" >&3
