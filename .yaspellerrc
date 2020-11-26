@@ -1,0 +1,34 @@
+{
+  "excludeFiles": [
+    ".git",
+    ".github",
+    "yaspeller",
+    "node_modules",
+    "CODEOWNERS",
+    ".*",
+    "*.bash"
+  ],
+  "lang": "en",
+  "fileExtensions": [
+    ".md"
+  ],
+  "dictionary": [
+    "MDR",
+    "(CI|ci)",
+    "Todo",
+    "rebase",
+    "travis",
+    "doxygen",
+    "codespell",
+    "yaml",
+    "linters",
+    "GitHub",
+    "mdr"
+  ],
+  "format": "plain",
+  "report": ["console"],
+  "ignoreTags": ["code", "script", "style", "var"],
+  "ignoreUrls": true,
+  "findRepeatWords": true,
+  "maxRequests": 5
+}

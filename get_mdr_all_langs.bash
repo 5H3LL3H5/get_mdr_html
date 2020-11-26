@@ -41,7 +41,7 @@ exists_command() {
 #   4) optional right glyph which forms the right border,
 #      if not given the left glyph is used instead
 #   5) optional spacing around the text, default two spaces between text and
-#      last glyph of left border and first glyph of right border respectivally
+#      last glyph of left border and first glyph of right border respectively
 # Outputs:
 #   Writes centered message to stdout.
 ###############################################################################
@@ -60,7 +60,7 @@ center_text() {
 	local left_border=""    # string filled up with left glyphs
 	local right_border=""   # string filled up with right glyphs
 
-	# if no text is obmitted use full border style
+	# if no text is omitted use full border style
 	if [[ -z "$text" ]]; then
 		text=""
 		num_of_spaces=0
