@@ -7,8 +7,8 @@ Simple bash script downloading MDR (medical device regulation) texts from EUR-le
 
 ## Project aim
 
-Only a personal project used to learning, practicing and improving my CI/GitHub
-skills. A longer term project aim is to automatically generate optimized GitHub
+A personal project used for learning, practicing and improving my CI/GitHub
+skills. A future project aim is to automatically generate optimized GitHub
 projects for bash, python, C and C++ projects.
 
 ## Todo
@@ -32,7 +32,7 @@ projects for bash, python, C and C++ projects.
 
 ## Already tried
 
-### Basic improvable knowledge in the following topics
+### Basic knowledge in the following topics
 
 - pre-commit hooks
 - GitHub workflows
